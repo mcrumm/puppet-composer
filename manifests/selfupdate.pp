@@ -78,5 +78,6 @@ define composer::selfupdate(
     command => "${base_command}${rollback_arg}${clean_backups_arg}${version_arg}",
     tries   => $tries,
     timeout => $timeout,
+    user    => $user,
   }
 }
