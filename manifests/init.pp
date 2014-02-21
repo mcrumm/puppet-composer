@@ -130,7 +130,7 @@ class composer(
 		  ensure  => present,
 		  source  => "${tmp_path}/composer.phar",
 		  require => [ Exec['download_composer'], File[$target_dir] ],
-		  mode    => 0644,
+		  mode    => 0755,
 		}
   }
 
