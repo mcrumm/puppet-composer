@@ -25,12 +25,14 @@ describe 'composer::selfupdate' do
         let(:params) { {
           :clean_backups => true,
           :version       => '12354eaf43',
+          :tries         => 6,
+          :timeout       => 150,
         } }
         it {
-          should contain_exec('composer_selfupdate_another_update').with({
+          should contain_exec('composer_selfupdate_another_update').without_user().with({
             :command => %r{php /usr/local/bin/composer selfupdate --clean-backups 12354eaf43},
-            :tries   => 3,
-            :timeout => 300,
+            :tries   => 6,
+            :timeout => 150,
           })
         }
       end
@@ -38,14 +40,17 @@ describe 'composer::selfupdate' do
         it { should contain_class('composer') }
         let(:title) { 'rollback_update' }
         let(:params) { {
-          :rollback => true,
-          :version  => '12354eaf43',
+          :rollback      => true,
+          :clean_backups => true,
+          :version       => '12354eaf43',
+          :user          => 'mrploch',
         } }
         it {
           should contain_exec('composer_selfupdate_rollback_update').with({
-            :command => %r{php /usr/local/bin/composer selfupdate --rollback 12354eaf43},
+            :command => %r{php /usr/local/bin/composer selfupdate --rollback --clean-backups 12354eaf43},
             :tries   => 3,
             :timeout => 300,
+            :user    => 'mrploch',
           })
         }
       end
