@@ -21,14 +21,18 @@ define composer::exec (
   $scripts           = false,
   $optimize          = false,
   $interaction       = false,
-  $dev               = false,
+  $dev               = true,
   $logoutput         = false,
   $verbose           = false,
   $refreshonly       = false,
+  $lock              = false,
   $user              = undef,
 ) {
-  require composer
-  require git
+  require ::composer
+
+  validate_string($cmd, $cwd)
+  validate_bool($lock, $prefer_source, $prefer_dist, $dry_run, $custom_installers, $scripts, $optimize, $interaction, $dev, $logoutput, $verbose, $refreshonly)
+  validate_array($packages)
 
   Exec {
     path        => "/bin:/usr/bin/:/sbin:/usr/sbin:${composer::target_dir}",
