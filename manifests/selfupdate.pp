@@ -40,7 +40,7 @@ define composer::selfupdate(
   $timeout       = 300,
   $tries         = 3,
 ) {
-  require composer
+  require ::composer
 
   validate_bool($rollback, $clean_backups, $logoutput)
 

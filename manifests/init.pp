@@ -65,11 +65,11 @@ class composer(
   $php_bin         = $composer::params::php_bin,
   $suhosin_enabled = $composer::params::suhosin_enabled,
   $auto_update     = $composer::params::auto_update,
-) inherits composer::params {
+) inherits ::composer::params {
 
   # Include stdlib
-  require stdlib
-  require git
+  require ::stdlib
+  require ::git
 
   # Validate input vars
   validate_string($target_dir, $composer_file, $download_method, $tmp_path, $php_package, $curl_package, $wget_package, $composer_home, $php_bin)
