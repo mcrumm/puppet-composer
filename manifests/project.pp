@@ -49,7 +49,6 @@ define composer::project(
   $timeout        = 1200,
   $user           = undef,
 ) {
-  require git
   require composer
 
   Exec {
@@ -78,8 +77,8 @@ define composer::project(
   }
 
   $pref_src = $prefer_source? {
-    true  => ' --prefer-source',
-    false => ''
+    true    => ' --prefer-source',
+    default => ''
   }
 
   $v = $version? {
