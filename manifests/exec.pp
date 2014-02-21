@@ -28,7 +28,10 @@ define composer::exec (
   $user              = undef,
 ) {
   require composer
-  require git
+
+  validate_string($cmd, $cwd)
+  validate_bool($prefer_source, $prefer_dist, $dry_run, $custom_installers, $scripts, $optimize, $interaction, $dev, $logoutput, $verbose, $refreshonly)
+  validate_array($packages)
 
   Exec {
     path        => "/bin:/usr/bin/:/sbin:/usr/sbin:${composer::target_dir}",
