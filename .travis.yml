@@ -16,5 +16,5 @@ notifications:
 branches:
   only:
     - master
-    - /^feature(-|_).*$/
-    - /^hotfix(-|_).*$/
+    - /^feature.*$/
+    - /^hotfix.*$/
